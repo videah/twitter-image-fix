@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://www.lactame.com/lib/image-js/0.21.2/image.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="dist/semantic-ui-alerts.css">
+    <script type="text/javascript" src="dist/semantic-ui-alerts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.min.js"></script>
+    <script src="script.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div class="ui text container">
+    <h1 class="ui dividing header">Twitter Image Fix</h1>
+    <h2 class="ui header">The Issue</h2>
+    <p>
+        Twitter has a habit of destroying image quality everywhere you look, in tweets and on your profile.
+        <br>
+        This site tries its best to prepare your image in a way that preserves its quality when uploaded to twitter
+        by using a few tricks.
+        <br><br>
+        Currently only profile pictures and banners is supported but eventually you'll be able to do tweet images too.
+    </p>
+    <div class="ui two item menu">
+        <a class="item blue active" id="avatar-choice">Avatar</a>
+        <a class="item blue" id="banner-choice">Profile Banner</a>
+    </div>
+    <div id="holder">
+        <i class="huge upload icon"></i>
+    </div>
+    <input id="file" type="file" style="display: none;">
+    <div class="ui divider"></div>
+    <h2 class="ui header">How It Works</h2>
+    <p>
+        It's possible for avatars and banners to avoid being compressed by Twitter when
+        uploading the exact resolution (400x400 for avatars, 1500x500 for banners) as
+        an 8-bit PNG.
+        <br><br>
+        You can read more on the official guidance for uploading high resolution images to twitter on <a href="https://twittercommunity.com/t/upcoming-changes-to-png-image-support/118695">this official forum post.</a>
+    </p>
+    <h2 class="ui header">What About Tweets?</h2>
+
+    As of writing Twitter currently leaves any JPEG you upload alone, so uploading your PNG as a high quality JPEG (I promise that exists) will get much better results. Thumbnails
+    will still look compressed on some platforms but if a user clicks onto the full image they'll get it at full resolution.
+    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Starting today, Twitter will preserve JPEGs as they are encoded for upload on Twitter for Web. (Caveat, cannot have EXIF orientation)<br><br>For example: the attached photo is actually a guetzli encoded JPEG at 97% quality with no chroma subsampling.<a href="https://t.co/1u37vTopkY">https://t.co/1u37vTopkY</a> <a href="https://t.co/Eyq67nfM0E">pic.twitter.com/Eyq67nfM0E</a></p>&mdash; Nolan O&#39;Brien (@NolanOBrien) <a href="https://twitter.com/NolanOBrien/status/1204557498990002176?ref_src=twsrc%5Etfw">December 11, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    Eventually this page will hopefully have a way of doing this for you but for now you can manually encode your images
+    either using Mozilla's <a href="https://github.com/mozilla/mozjpeg">mozjpeg</a> or if you want to squeeze the most out of your image
+    and don't mind waiting 1000x longer encoding times you can use Google's <a href="https://github.com/google/guetzli">guetzli.</a>
+
+</div>
+
+<div class="ui small modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Crop Avatar
+    </div>
+    <div class="content">
+        <div id="croppie"></div>
+    </div>
+    <div class="actions">
+        <div class="ui positive approve button download-btn" tabindex="0">
+            <div class="visible content">Crop And Fix Avatar</div>
+        </div>
+    </div>
+</div>
+<div id="script-helper"></div>
+</body>
+</html>
